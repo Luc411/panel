@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://nvtjjzqzzfxegdhfehmo.supabase.co; base-uri 'none'; form-action 'none'">
+<title>Panel de Luca</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="pantalla-cargando">
+
+<!-- CARGANDO -->
+<main id="p-cargando" class="centro"><div class="sub">Cargando…</div></main>
+
+<!-- ENTRAR (lo unico que se ve sin sesion) -->
+<main id="p-entrar" class="centro" hidden>
+  <form id="f-entrar" class="tarjeta-login" autocomplete="on">
+    <h1>Panel de Luca</h1>
+    <div class="sub">Entrá con tu correo y tu contraseña.</div>
+    <label>Correo<input id="correo" type="email" name="email" autocomplete="username" inputmode="email" required></label>
+    <label>Contraseña<input id="clave" type="password" name="password" autocomplete="current-password" required></label>
+    <button class="principal" type="submit" id="b-entrar">Entrar</button>
+    <div class="msg" id="msg-entrar" role="status"></div>
+    <button class="enlace" type="button" id="b-olvide">Olvidé mi contraseña / es mi primera vez</button>
+  </form>
+</main>
+
+<!-- CREAR LA CONTRASENA (despues de abrir el link del mail) -->
+<main id="p-clave" class="centro" hidden>
+  <form id="f-clave" class="tarjeta-login" autocomplete="off">
+    <h1>Elegí tu contraseña</h1>
+    <div class="sub">La escribís vos y nadie más la ve. Mínimo 10 caracteres.</div>
+    <label>Contraseña nueva<input id="clave1" type="password" autocomplete="new-password" minlength="10" required></label>
+    <label>Repetila<input id="clave2" type="password" autocomplete="new-password" minlength="10" required></label>
+    <button class="principal" type="submit" id="b-clave">Guardar y entrar</button>
+    <div class="msg" id="msg-clave" role="status"></div>
+  </form>
+</main>
+
+<!-- LA APP -->
+<div id="p-app" hidden>
+  <header>
+    <div class="titulo">
+      <h1 id="h-titulo">Tablero de cuentas</h1>
+      <div class="sub" id="sub">Cargando…</div>
+    </div>
+    <nav class="pestanas">
+      <button type="button" id="t-tablero" class="pestana activa">Tablero</button>
+      <button type="button" id="t-textos" class="pestana">Textos</button>
+      <button type="button" id="b-salir" class="pestana salir">Salir</button>
+    </nav>
+  </header>
+  <section id="v-tablero">
+    <div class="leyenda">
+      <div class="pil"><i class="punto p-verde"></i>Todo bien</div>
+      <div class="pil"><i class="punto p-amarillo"></i>Algo raro, mirala</div>
+      <div class="pil"><i class="punto p-naranja"></i>Función bloqueada</div>
+      <div class="pil"><i class="punto p-rojo"></i>Te necesita a vos</div>
+      <div class="pil"><i class="punto p-apagado"></i>Apagada o fuera de turno</div>
+    </div>
+    <section class="franja" id="franja"></section>
+    <section class="grilla" id="grilla"></section>
+  </section>
+  <section id="v-textos" hidden>
+    <div class="ancho">
+      <div class="sub">Cada cuenta tiene sus propias palabras para el primer mensaje y los seguimientos. Cada 3 días se arma un lote nuevo; hasta que le des OK siguen saliendo los de ahora.</div>
+      <div id="t-estado"></div>
+      <div class="barra-top">
+        <button class="principal" id="ok-todas" type="button">OK a todas las cuentas</button>
+        <span class="msg" id="msg-global"></span>
+      </div>
+      <div id="t-cuentas"></div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js" integrity="sha384-KX6Y/AMIv9qA8TLCDul2JatZWeyrJVgj3Xu/0r30Nr05xO8md1+wHAgtdsRV9LoE" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+</html>
